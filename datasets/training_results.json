@@ -1,0 +1,35 @@
+[
+    {
+      "nl_query": "Find the average time spent on the website by users who clicked on a push notification and completed a survey.",
+      "sql_query": "SELECT AVG(time_spent_seconds) FROM events WHERE push_notification_clicked = true AND survey_completed = true;"
+    },
+    {
+      "nl_query": "Get the count of wishlist items for each user and sort them in descending order.",
+      "sql_query": "SELECT fk_user_id, COUNT(*) as wishlist_count FROM wishlist GROUP BY fk_user_id ORDER BY wishlist_count DESC;"
+    },
+    {
+      "nl_query": "Find the products in the cart that have a promotional discounted price less than $50, along with the customer's loyalty program tier level and the customer's accumulated loyalty points balance.",
+      "sql_query": "SELECT T1.product_display_name, T3.accumulated_loyalty_points_balance, T3.loyalty_program_tier_level FROM products AS T1 INNER JOIN cart AS T2 ON T1.unique_product_identifier = T2.fk_product_id INNER JOIN customers_loyalty_program AS T3 ON T2.fk_user_id = T3.associated_customer_reference_id WHERE T1.promotional_discounted_price < 50;"
+    },
+    {
+      "nl_query": "What is the total discount amount redeemed by customers who have participated in exclusive beta testing and have a loyalty membership unique identifier greater than 1000?",
+      "sql_query": "SELECT SUM(total_discount_amount_redeemed) FROM customers_loyalty_program WHERE participation_in_exclusive_beta_testing = TRUE AND loyalty_membership_unique_identifier > 1000;"
+    },
+    {
+      "nl_query": "Retrieve the total amount of all orders that contain products from the cart of user with ID 123 and have a shipping date after January 1, 2023.",
+      "sql_query": "SELECT SUM(o.total_amount) FROM orders o JOIN cart c ON o.person_customer_id = c.fk_user_id WHERE c.fk_user_id = 123 AND o.shipping_date > '2023-01-01';"
+    },
+    {
+      "nl_query": "What are the campaign names of the campaigns that have generated more than $1000 in revenue and have a cost per acquisition of less than $10?",
+      "sql_query": "SELECT campaign_name FROM campaigns WHERE revenue_generated > 1000 AND cost_per_acquisition < 10;"
+    },
+    {
+      "nl_query": "Show the average rating of reviews submitted by customers who are verified and have active subscriptions, and the number of helpful votes they received.",
+      "sql_query": "SELECT AVG(T2.submitted_review_star_rating), AVG(T2.number_of_helpful_votes_received) FROM customerinfo AS T1 INNER JOIN product_reviews_and_ratings AS T2 ON T1.person_customer_id = T2.reviewing_customer_identifier WHERE T1.account_has_active_subscription = TRUE AND T2.verification_status_of_reviewer = TRUE;"
+    },
+    {
+      "nl_query": "Find the product name and average review rating for products with more than 100 reviews.",
+      "sql_query": "SELECT p.product_display_name, AVG(prar.submitted_review_star_rating) FROM products p JOIN product_reviews_and_ratings prar ON p.unique_product_identifier = prar.referenced_product_identifier GROUP BY p.product_display_name HAVING COUNT(prar.review_unique_identifier) > 100;"
+    }
+  ]
+  
