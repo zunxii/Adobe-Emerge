@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS sql_queries (
+    id SERIAL PRIMARY KEY,
+    query TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS sql_queries;
+
+CREATE TABLE sql_queries (
+    id SERIAL PRIMARY KEY,
+    query TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

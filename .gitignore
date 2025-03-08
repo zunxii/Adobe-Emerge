@@ -1,0 +1,37 @@
+# Ignore Python bytecode and cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Ignore virtual environments
+venv/
+env/
+*.venv
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore environment variables
+.env
+*.env
+
+# Ignore IDE and editor settings
+.vscode/
+.idea/
+*.iml
+
+# Ignore log and temporary files
+logs/
+*.log
+*.out
+*.tmp
+
+# Ignore datasets and output files (if not needed in Git)
+datasets/*.json
+!datasets/sample_data.json  # (Uncomment this if you want to keep some example data)
+
+# Ignore dependencies
+node_modules/
+package-lock.json
+yarn.lock
